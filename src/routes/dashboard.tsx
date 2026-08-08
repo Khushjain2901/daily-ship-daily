@@ -108,7 +108,7 @@ function Dashboard() {
                     <CheckDot done={isDone} />
                     <span className="min-w-0 truncate text-sm font-medium">
                       {Icon ? (
-                        <Icon size={14} className="mr-2 inline align--2 text-muted-foreground" aria-hidden />
+                        <Icon size={14} className="mr-2 inline text-muted-foreground" aria-hidden />
                       ) : null}
                       {label}
                     </span>
