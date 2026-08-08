@@ -134,7 +134,7 @@ function Dashboard() {
                 </p>
               ) : (
                 <p className="font-mono text-[11px] tracking-[0.14em] text-muted-foreground uppercase">
-                  {done} / 3 complete — your proof is waiting
+                  {done} / 3 complete
                 </p>
               )}
             </div>
