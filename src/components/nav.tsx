@@ -2,9 +2,9 @@ import { Link, useRouterState } from "@tanstack/react-router";
 import { Home, Flame, Target } from "lucide-react";
 
 const items = [
-  { to: "/", label: "Home", icon: Home },
-  { to: "/dashboard", label: "Progress", icon: Flame },
-  { to: "/day/12", label: "Today", icon: Target },
+  { to: "/", label: "Home", icon: Home, params: {} },
+  { to: "/dashboard", label: "Progress", icon: Flame, params: {} },
+  { to: "/day/$day", label: "Today", icon: Target, params: { day: "12" } },
 ] as const;
 
 export function BottomNav() {
@@ -16,12 +16,15 @@ export function BottomNav() {
       className="fixed inset-x-0 bottom-0 z-50 border-t border-border bg-background/95 backdrop-blur md:hidden"
     >
       <ul className="mx-auto flex max-w-md items-stretch">
-        {items.map(({ to, label, icon: Icon }) => {
-          const active = pathname === to;
+        {items.map(({ to, label, icon: Icon, params }) => {
+          const active = to.startsWith("/day")
+            ? pathname.startsWith("/day")
+            : pathname === to;
           return (
             <li key={to} className="flex-1">
               <Link
                 to={to}
+                params={params as never}
                 className={`flex min-h-14 flex-col items-center justify-center gap-1 py-2 text-[11px] font-medium ${
                   active ? "text-primary" : "text-muted-foreground"
                 }`}
@@ -37,6 +40,7 @@ export function BottomNav() {
     </nav>
   );
 }
+
 
 export function TopBar({ right }: { right?: React.ReactNode }) {
   return (
